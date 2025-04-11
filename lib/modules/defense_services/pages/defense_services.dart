@@ -17,27 +17,27 @@ class DefenseServices extends StatelessWidget {
       appBar: AppBar(
         title: Text("Servicios"),
       ),
-      body: FutureBuilder(
-        future: _fetchServices(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: FutureBuilder(
+          future: _fetchServices(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
 
-          if (snapshot.hasError) {
-            return Center(
-              child: Text(
-                  "Tenemos problemas al mostrar los servicios, por favor, intente más tarde."),
-            );
-          }
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(
+                    "Tenemos problemas al mostrar los servicios, por favor, intente más tarde."),
+              );
+            }
 
-          if (snapshot.hasData) {
-            final data = snapshot.data!;
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: ListView.builder(
+            if (snapshot.hasData) {
+              final data = snapshot.data!;
+              return ListView.builder(
                 itemCount: data.length,
                 itemBuilder: (context, index) {
                   final service = DefenseServiceModel.fromJson(data[index]);
@@ -82,14 +82,14 @@ class DefenseServices extends StatelessWidget {
                     ),
                   );
                 },
-              ),
-            );
-          }
+              );
+            }
 
-          return Center(
-            child: Text("Algo salió mal..."),
-          );
-        },
+            return Center(
+              child: Text("Algo salió mal..."),
+            );
+          },
+        ),
       ),
     );
   }
