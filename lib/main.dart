@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:proyecto_final/modules/home/pages/home.dart';
 import 'package:proyecto_final/modules/news/pages/news_list.dart';
 import 'package:sizer/sizer.dart';
 
@@ -19,7 +20,6 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Defensa Civil',
-          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             colorScheme:
                 ColorScheme.fromSeed(seedColor: Colors.deepOrangeAccent),
