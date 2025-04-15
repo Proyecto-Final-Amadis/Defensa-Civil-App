@@ -17,13 +17,14 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, screenType) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Defensa Civil',
           theme: ThemeData(
             colorScheme:
                 ColorScheme.fromSeed(seedColor: Colors.deepOrangeAccent),
             useMaterial3: true,
           ),
-          home: const ProductListScreen(),
+          home: const LoginScreen(),
         );
       },
     );
