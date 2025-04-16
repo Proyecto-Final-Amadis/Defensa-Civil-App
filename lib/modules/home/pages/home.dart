@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:proyecto_final/models/login_model.dart';
 import 'package:proyecto_final/modules/home/pages/forgotter_password.dart';
 import 'package:proyecto_final/modules/home/pages/register.dart';
 import 'package:proyecto_final/providers/auth_providers.dart';
@@ -28,8 +29,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     }
 
     try {
-      final response = await ref.read(loginServiceProvider).login();
+      final loginModel = LoginModel(
+          cedula: _cedulaController.text, clave: _passwordController.text);
+
+      final response = await ref.watch(loginProvider(loginModel).future);
       debugPrint("$response");
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Inicio de sesión exitoso'),
+          backgroundColor: Colors.green,
+        ),
+      );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

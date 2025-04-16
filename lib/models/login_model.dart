@@ -1,66 +1,23 @@
-import 'dart:convert';
+class LoginModel {
+  final String cedula;
+  final String clave;
 
-LoginResponse loginResponseFromJson(String str) =>
-    LoginResponse.fromJson(json.decode(str));
-
-String loginResponseToJson(LoginResponse data) => json.encode(data.toJson());
-
-class LoginResponse {
-  bool exito;
-  Datos datos;
-  String mensaje;
-
-  LoginResponse({
-    required this.exito,
-    required this.datos,
-    required this.mensaje,
+  LoginModel({
+    required this.cedula,
+    required this.clave,
   });
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
-        exito: json["exito"],
-        datos: Datos.fromJson(json["datos"]),
-        mensaje: json["mensaje"],
-      );
+  factory LoginModel.fromJson(Map<String, dynamic> json) {
+    return LoginModel(
+      cedula: json['cedula'],
+      clave: json['clave'],
+    );
+  }
 
-  Map<String, dynamic> toJson() => {
-        "exito": exito,
-        "datos": datos.toJson(),
-        "mensaje": mensaje,
-      };
-}
-
-class Datos {
-  String id;
-  String nombre;
-  String apellido;
-  String correo;
-  String telefono;
-  String token;
-
-  Datos({
-    required this.id,
-    required this.nombre,
-    required this.apellido,
-    required this.correo,
-    required this.telefono,
-    required this.token,
-  });
-
-  factory Datos.fromJson(Map<String, dynamic> json) => Datos(
-        id: json["id"],
-        nombre: json["nombre"],
-        apellido: json["apellido"],
-        correo: json["correo"],
-        telefono: json["telefono"],
-        token: json["token"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "nombre": nombre,
-        "apellido": apellido,
-        "correo": correo,
-        "telefono": telefono,
-        "token": token,
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      'cedula': cedula,
+      'clave': clave,
+    };
+  }
 }

@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:proyecto_final/models/register_model.dart';
+import 'package:proyecto_final/providers/auth_providers.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {
   const RegisterScreen({super.key});
@@ -31,18 +34,28 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       });
 
       try {
-        // Aquí implementarías la lógica para registrar al usuario
-        // Ejemplo:
-        // final response = await ref.read(registerServiceProvider).register(
-        //   cedula: _cedulaController.text,
-        //   nombre: _nombreController.text,
-        //   apellido: _apellidoController.text,
-        //   clave: _claveController.text,
-        //   correo: _correoController.text,
-        //   telefono: _telefonoController.text,
-        // );
+        final registerModel = RegisterModel(
+          cedula: _cedulaController.text,
+          nombre: _nombreController.text,
+          apellido: _apellidoController.text,
+          clave: _claveController.text,
+          correo: _correoController.text,
+          telefono: _telefonoController.text,
+        );
 
-        // Simulación de retardo para la demo
+        final response = await ref.read(registerProvider(registerModel).future);
+
+        if (!response.exito) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(response.mensaje),
+              backgroundColor: Colors.red,
+            ),
+          );
+
+          return;
+        }
+
         await Future.delayed(const Duration(seconds: 2));
 
         if (mounted) {
@@ -53,7 +66,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
             ),
           );
 
-          // Navegar al login
           Navigator.of(context).pop();
         }
       } catch (e) {
