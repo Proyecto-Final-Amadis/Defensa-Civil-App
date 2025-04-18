@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final/config/dio.dart';
+import 'package:proyecto_final/models/hostel_model.dart';
+import 'package:proyecto_final/modules/hostels/pages/hostel_details.dart';
 
 class HostelList extends StatelessWidget {
   const HostelList({super.key});
@@ -43,40 +45,19 @@ class HostelList extends StatelessWidget {
               return ListView.builder(
                 itemCount: data.length,
                 itemBuilder: (context, index) {
-                  final hostel = data[index];
+                  final hostel = HostelModel.fromJson(data[index]);
 
-                  return Container(
-                    margin: const EdgeInsets.only(bottom: 16),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Stack(
-                        children: [
-                          Image.network(
-                            hostel["imageUrl"],
-                            width: double.infinity,
-                            height: 200,
-                            fit: BoxFit.cover,
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              padding: const EdgeInsets.all(16),
-                              color: Colors.black54,
-                              child: Text(
-                                hostel["building"],
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  return ListTile(
+                    title: Text(hostel.building),
+                    subtitle: Text(hostel.city),
+                    trailing: Icon(Icons.arrow_forward_ios_rounded),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => HostelDetails(hostel),
+                        ),
+                      );
+                    },
                   );
                 },
               );
