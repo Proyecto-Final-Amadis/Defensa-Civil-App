@@ -15,8 +15,17 @@ class HostelList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Albergues"),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        title: Text(
+          "Albergues",
+          style: TextStyle(
+            color: Colors.orange.shade800,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(

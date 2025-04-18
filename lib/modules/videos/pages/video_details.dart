@@ -30,8 +30,20 @@ class _VideoDetailsState extends State<VideoDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Detalles del video"),
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, color: Colors.orange.shade800),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text(
+          "Detalles del video",
+          style: TextStyle(
+            color: Colors.orange.shade800,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(35),

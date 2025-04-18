@@ -7,8 +7,17 @@ class AboutDevs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Sobre los desarrolladores"),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text(
+          "Sobre los desarrolladores",
+          style: TextStyle(
+            color: Colors.orange.shade800,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -31,7 +40,10 @@ class AboutDevs extends StatelessWidget {
                         ),
                         Text("Teléfono: +1 809-999-3911"),
                         TextButton.icon(
-                          icon: Icon(Icons.copy_rounded),
+                          icon: Icon(
+                            Icons.copy_rounded,
+                            color: Colors.orange.shade800,
+                          ),
                           onPressed: () {
                             Clipboard.setData(
                                 ClipboardData(text: "@Lazarito444"));
@@ -43,7 +55,13 @@ class AboutDevs extends StatelessWidget {
                               ),
                             );
                           },
-                          label: Text("Copiar contacto de Telegram"),
+                          label: Text(
+                            "Copiar contacto de Telegram",
+                            style: TextStyle(
+                              color: Colors.orange.shade800,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         )
                       ],
                     ),
@@ -52,7 +70,13 @@ class AboutDevs extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: const Text("Cerrar"),
+                        child: Text(
+                          "Cerrar",
+                          style: TextStyle(
+                            color: Colors.orange.shade800,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -82,9 +106,10 @@ class AboutDevs extends StatelessWidget {
                           child: const Text(
                             'Ariel David Lázaro Pérez',
                             style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
@@ -107,7 +132,10 @@ class AboutDevs extends StatelessWidget {
                         ),
                         Text("Teléfono: +1 849-857-6040"),
                         TextButton.icon(
-                          icon: Icon(Icons.copy_rounded),
+                          icon: Icon(
+                            Icons.copy_rounded,
+                            color: Colors.orange.shade800,
+                          ),
                           onPressed: () {
                             //TODO: Añadir el @ de Telegram de Jeriel
                             Clipboard.setData(ClipboardData(text: ""));
@@ -119,7 +147,13 @@ class AboutDevs extends StatelessWidget {
                               ),
                             );
                           },
-                          label: Text("Copiar contacto de Telegram"),
+                          label: Text(
+                            "Copiar contacto de Telegram",
+                            style: TextStyle(
+                              color: Colors.orange.shade800,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         )
                       ],
                     ),
@@ -128,7 +162,13 @@ class AboutDevs extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: const Text("Cerrar"),
+                        child: Text(
+                          "Cerrar",
+                          style: TextStyle(
+                            color: Colors.orange.shade800,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ],
                   ),

@@ -15,8 +15,17 @@ class NewsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Noticias"),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        title: Text(
+          "Noticias",
+          style: TextStyle(
+            color: Colors.orange.shade800,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -27,7 +36,9 @@ class NewsList extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: Colors.orange.shade800,
+                ),
               );
             }
 
@@ -35,6 +46,12 @@ class NewsList extends StatelessWidget {
               return Center(
                 child: Text(
                   "Tenemos problemas para mostrar las noticias, intente más tarde.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.orange.shade800,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
                 ),
               );
             }
@@ -46,10 +63,37 @@ class NewsList extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final newsItem = NewsModel.fromJson(news[index]);
                   return Card(
+                    margin: EdgeInsets.only(
+                      bottom: 20,
+                    ),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(
+                        color: Colors.orange.shade200,
+                        width: 3,
+                      ),
+                    ),
                     child: ListTile(
-                      title: Text(newsItem.title),
-                      subtitle: Text(newsItem.dateTime),
-                      trailing: Icon(Icons.arrow_forward_ios),
+                      tileColor: Colors.grey.shade50,
+                      title: Text(
+                        newsItem.title,
+                        style: TextStyle(
+                          color: Colors.orange.shade800,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(
+                        newsItem.dateTime,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.orange.shade600,
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.orange.shade800,
+                      ),
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -64,7 +108,14 @@ class NewsList extends StatelessWidget {
             }
 
             return Center(
-              child: Text("Algo salió mal."),
+              child: Text(
+                "Algo salió mal.",
+                style: TextStyle(
+                  color: Colors.orange.shade800,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                ),
+              ),
             );
           },
         ),
