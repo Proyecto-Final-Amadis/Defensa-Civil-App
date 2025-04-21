@@ -1,6 +1,6 @@
 class GeneralResponse {
   bool exito;
-  List<dynamic> datos;
+  dynamic datos;
   String mensaje;
 
   GeneralResponse({

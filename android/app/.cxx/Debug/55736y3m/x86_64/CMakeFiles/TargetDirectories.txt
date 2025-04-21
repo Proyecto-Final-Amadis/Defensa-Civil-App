@@ -1,0 +1,2 @@
+/Users/jerielgomez/Documents/GitHub/Defensa-Civil-App/android/app/.cxx/Debug/55736y3m/x86_64/CMakeFiles/edit_cache.dir
+/Users/jerielgomez/Documents/GitHub/Defensa-Civil-App/android/app/.cxx/Debug/55736y3m/x86_64/CMakeFiles/rebuild_cache.dir

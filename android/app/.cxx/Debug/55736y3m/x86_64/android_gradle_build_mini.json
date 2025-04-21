@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/jerielgomez/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/jerielgomez/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/jerielgomez/Documents/GitHub/Defensa-Civil-App/android/app/.cxx/Debug/55736y3m/x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/jerielgomez/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/jerielgomez/Documents/GitHub/Defensa-Civil-App/android/app/.cxx/Debug/55736y3m/x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
