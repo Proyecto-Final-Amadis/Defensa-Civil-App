@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final/config/dio.dart';
-import 'package:proyecto_final/models/news_model.dart';
-import 'package:proyecto_final/modules/news/pages/news.dart';
+import 'package:proyecto_final/models/hostel_model.dart';
+import 'package:proyecto_final/modules/hostels/pages/hostel_details.dart';
 
-class NewsList extends StatelessWidget {
-  const NewsList({super.key});
+class HostelList extends StatelessWidget {
+  const HostelList({super.key});
 
-  Future<List<dynamic>> _fetchNews() async {
+  Future<List<dynamic>> _fetchHostels() async {
     final client = ClientBase();
-    final response = await client.clientDio.get("/noticias.php");
+    final response = await client.clientDio.get("/albergues.php");
     return response.data!["datos"];
   }
 
@@ -20,7 +20,7 @@ class NewsList extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
         title: Text(
-          "Noticias",
+          "Albergues",
           style: TextStyle(
             color: Colors.orange.shade800,
             fontWeight: FontWeight.bold,
@@ -32,40 +32,31 @@ class NewsList extends StatelessWidget {
           horizontal: 20,
         ),
         child: FutureBuilder(
-          future: _fetchNews(),
+          future: _fetchHostels(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
-                child: CircularProgressIndicator(
-                  color: Colors.orange.shade800,
-                ),
+                child: CircularProgressIndicator(),
               );
             }
 
             if (snapshot.hasError) {
               return Center(
                 child: Text(
-                  "Tenemos problemas para mostrar las noticias, intente más tarde.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.orange.shade800,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                  ),
+                  "Tenemos problemas al mostrar los albergues, por favor, intente más tarde.",
                 ),
               );
             }
 
             if (snapshot.hasData) {
-              final news = snapshot.data!;
+              final data = snapshot.data!;
+
               return ListView.builder(
-                itemCount: news.length,
+                itemCount: data.length,
                 itemBuilder: (context, index) {
-                  final newsItem = NewsModel.fromJson(news[index]);
+                  final hostel = HostelModel.fromJson(data[index]);
+
                   return Card(
-                    margin: EdgeInsets.only(
-                      bottom: 20,
-                    ),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -75,29 +66,28 @@ class NewsList extends StatelessWidget {
                       ),
                     ),
                     child: ListTile(
-                      tileColor: Colors.grey.shade50,
                       title: Text(
-                        newsItem.title,
+                        hostel.building,
                         style: TextStyle(
                           color: Colors.orange.shade800,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       subtitle: Text(
-                        newsItem.dateTime,
+                        hostel.city,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          color: Colors.orange.shade600,
+                          // color: Colors.orange.shade600,
                         ),
                       ),
                       trailing: Icon(
-                        Icons.arrow_forward_ios,
+                        Icons.arrow_forward_ios_rounded,
                         color: Colors.orange.shade800,
                       ),
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => News(newsItem),
+                            builder: (_) => HostelDetails(hostel),
                           ),
                         );
                       },
@@ -108,14 +98,7 @@ class NewsList extends StatelessWidget {
             }
 
             return Center(
-              child: Text(
-                "Algo salió mal.",
-                style: TextStyle(
-                  color: Colors.orange.shade800,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                ),
-              ),
+              child: Text("No hay datos."),
             );
           },
         ),

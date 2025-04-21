@@ -2,6 +2,7 @@
     <application
         android:label="proyecto_final"
         android:name="${applicationName}"
+        android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

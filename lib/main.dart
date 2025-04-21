@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
                 ColorScheme.fromSeed(seedColor: Colors.deepOrangeAccent),
             useMaterial3: true,
           ),
-          home: const LoginScreen(),
+          home: HostelList(),
         );
       },
     );

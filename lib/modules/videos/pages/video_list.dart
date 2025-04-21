@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final/config/dio.dart';
-import 'package:proyecto_final/models/news_model.dart';
-import 'package:proyecto_final/modules/news/pages/news.dart';
+import 'package:proyecto_final/models/video_model.dart';
+import 'package:proyecto_final/modules/videos/pages/video_details.dart';
 
-class NewsList extends StatelessWidget {
-  const NewsList({super.key});
+class VideoList extends StatelessWidget {
+  const VideoList({super.key});
 
-  Future<List<dynamic>> _fetchNews() async {
-    final client = ClientBase();
-    final response = await client.clientDio.get("/noticias.php");
-    return response.data!["datos"];
+  Future<List<dynamic>> _fetchVideos() async {
+    final clientBase = ClientBase();
+    final response = await clientBase.clientDio.get("/videos.php");
+    return response.data["datos"];
   }
 
   @override
@@ -17,10 +17,9 @@ class NewsList extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 0,
         backgroundColor: Colors.white,
         title: Text(
-          "Noticias",
+          "Videos",
           style: TextStyle(
             color: Colors.orange.shade800,
             fontWeight: FontWeight.bold,
@@ -30,42 +29,32 @@ class NewsList extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
+          vertical: 15,
         ),
         child: FutureBuilder(
-          future: _fetchNews(),
+          future: _fetchVideos(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(
-                  color: Colors.orange.shade800,
-                ),
+              return const Center(
+                child: CircularProgressIndicator(),
               );
             }
 
             if (snapshot.hasError) {
-              return Center(
+              return const Center(
                 child: Text(
-                  "Tenemos problemas para mostrar las noticias, intente más tarde.",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.orange.shade800,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                  ),
+                  "Tenemos problemas para mostrar los videos, intente más tarde.",
                 ),
               );
             }
 
             if (snapshot.hasData) {
-              final news = snapshot.data!;
+              final videos = snapshot.data!;
               return ListView.builder(
-                itemCount: news.length,
+                itemCount: videos.length,
                 itemBuilder: (context, index) {
-                  final newsItem = NewsModel.fromJson(news[index]);
+                  final video = VideoModel.fromJson(videos[index]);
                   return Card(
-                    margin: EdgeInsets.only(
-                      bottom: 20,
-                    ),
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -74,17 +63,20 @@ class NewsList extends StatelessWidget {
                         width: 2,
                       ),
                     ),
+                    margin: const EdgeInsets.only(
+                      bottom: 10,
+                    ),
                     child: ListTile(
                       tileColor: Colors.grey.shade50,
                       title: Text(
-                        newsItem.title,
+                        video.title,
                         style: TextStyle(
                           color: Colors.orange.shade800,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       subtitle: Text(
-                        newsItem.dateTime,
+                        video.date,
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colors.orange.shade600,
@@ -97,7 +89,7 @@ class NewsList extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => News(newsItem),
+                            builder: (context) => VideoDetails(video),
                           ),
                         );
                       },
@@ -107,15 +99,8 @@ class NewsList extends StatelessWidget {
               );
             }
 
-            return Center(
-              child: Text(
-                "Algo salió mal.",
-                style: TextStyle(
-                  color: Colors.orange.shade800,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                ),
-              ),
+            return const Center(
+              child: Text("No hay videos disponibles."),
             );
           },
         ),

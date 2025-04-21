@@ -14,8 +14,17 @@ class DefenseServices extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("Servicios"),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        title: Text(
+          "Servicios",
+          style: TextStyle(
+            color: Colors.orange.shade800,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -24,14 +33,22 @@ class DefenseServices extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: Colors.orange.shade800,
+                ),
               );
             }
 
             if (snapshot.hasError) {
               return Center(
                 child: Text(
-                    "Tenemos problemas al mostrar los servicios, por favor, intente más tarde."),
+                  "Tenemos problemas al mostrar los servicios, por favor, intente más tarde.",
+                  style: TextStyle(
+                    color: Colors.orange.shade800,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                  ),
+                ),
               );
             }
 
@@ -50,7 +67,7 @@ class DefenseServices extends StatelessWidget {
                         bottom: 20,
                       ),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(14),
                         child: Stack(
                           children: [
                             Image.network(
@@ -86,7 +103,14 @@ class DefenseServices extends StatelessWidget {
             }
 
             return Center(
-              child: Text("Algo salió mal..."),
+              child: Text(
+                "Algo salió mal...",
+                style: TextStyle(
+                  color: Colors.orange.shade800,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
             );
           },
         ),
