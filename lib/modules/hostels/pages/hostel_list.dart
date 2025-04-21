@@ -56,17 +56,42 @@ class HostelList extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final hostel = HostelModel.fromJson(data[index]);
 
-                  return ListTile(
-                    title: Text(hostel.building),
-                    subtitle: Text(hostel.city),
-                    trailing: Icon(Icons.arrow_forward_ios_rounded),
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => HostelDetails(hostel),
+                  return Card(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(
+                        color: Colors.orange.shade400,
+                        width: 2,
+                      ),
+                    ),
+                    child: ListTile(
+                      title: Text(
+                        hostel.building,
+                        style: TextStyle(
+                          color: Colors.orange.shade800,
+                          fontWeight: FontWeight.bold,
                         ),
-                      );
-                    },
+                      ),
+                      subtitle: Text(
+                        hostel.city,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          // color: Colors.orange.shade600,
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: Colors.orange.shade800,
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => HostelDetails(hostel),
+                          ),
+                        );
+                      },
+                    ),
                   );
                 },
               );
