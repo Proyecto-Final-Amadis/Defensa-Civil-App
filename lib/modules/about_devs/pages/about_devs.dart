@@ -137,8 +137,8 @@ class AboutDevs extends StatelessWidget {
                             color: Colors.orange.shade800,
                           ),
                           onPressed: () {
-                            //TODO: Añadir el @ de Telegram de Jeriel
-                            Clipboard.setData(ClipboardData(text: ""));
+                            Clipboard.setData(
+                                ClipboardData(text: "+1 849-857-6040"));
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content:
@@ -178,9 +178,8 @@ class AboutDevs extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 child: Stack(
                   children: [
-                    //TODO: Añadir una imagen de Jeriel a los assets y añadirla a la pantalla
-                    Image.network(
-                      'https://media.licdn.com/dms/image/v2/D4E03AQG6x3QJ-tZ8jw/profile-displayphoto-shrink_800_800/B4EZVh8NajGgAg-/0/1741104928744?e=1750896000&v=beta&t=x19V8XijT6xNG4AdI5spwrKUMprJZsRGl0ilNhSmH3k',
+                    Image.asset(
+                      'assets/jeriel.png',
                       width: double.infinity,
                       height: 250,
                       fit: BoxFit.cover,
