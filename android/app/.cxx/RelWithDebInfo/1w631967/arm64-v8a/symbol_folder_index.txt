@@ -1,0 +1,1 @@
+/Users/jerielgomez/Documents/GitHub/Defensa-Civil-App/build/app/intermediates/cxx/RelWithDebInfo/1w631967/obj/arm64-v8a

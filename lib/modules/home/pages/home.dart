@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:proyecto_final/modules/about_devs/pages/about_devs.dart';
+import 'package:proyecto_final/modules/albergues/albergues.dart';
+import 'package:proyecto_final/modules/defense_services/pages/defense_services.dart';
+import 'package:proyecto_final/modules/hostels/pages/hostel_list.dart';
+import 'package:proyecto_final/modules/medida_preventiva/medida_preventiva.dart';
+import 'package:proyecto_final/modules/members/pages/members.dart';
+import 'package:proyecto_final/modules/news/pages/news_list.dart';
+import 'package:proyecto_final/modules/situaciones/mis_situaciones.dart';
+import 'package:proyecto_final/modules/situaciones/reportar_situacion.dart';
+import 'package:proyecto_final/modules/videos/pages/video_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -58,12 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_outlined, color: Colors.white),
-            onPressed: () {},
-          ),
-        ],
       ),
       drawer: _buildDrawer(context),
       body: SingleChildScrollView(
@@ -321,30 +325,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      // child: ClipRRect(
-                      //   borderRadius: BorderRadius.circular(15),
-                      //   child: YoutubePlayer(
-                      //     controller: _youtubeController,
-                      //     showVideoProgressIndicator: true,
-                      //     progressIndicatorColor: Colors.orange.shade600,
-                      //     progressColors: ProgressBarColors(
-                      //       playedColor: Colors.orange.shade600,
-                      //       handleColor: Colors.orange.shade800,
-                      //     ),
-                      //     bottomActions: [
-                      //       CurrentPosition(),
-                      //       ProgressBar(
-                      //         isExpanded: true,
-                      //         colors: ProgressBarColors(
-                      //           playedColor: Colors.orange.shade600,
-                      //           handleColor: Colors.orange.shade800,
-                      //         ),
-                      //       ),
-                      //       RemainingDuration(),
-                      //       FullScreenButton(),
-                      //     ],
-                      //   ),
-                      // ),
                     ),
                   ],
                 ),
@@ -353,67 +333,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
             const SizedBox(height: 30),
 
-            // Sección de botones rápidos
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  Icon(Icons.touch_app, color: Colors.orange.shade800),
-                  const SizedBox(width: 10),
-                  Text(
-                    'Accesos Rápidos',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.orange.shade800,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 15),
-
-            // Tarjetas de acceso rápido
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
                   _buildQuickAccessCard(
-                    context,
-                    Icons.volunteer_activism,
-                    'Ser Voluntario',
-                    () => Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const TestScreen(title: 'Ser Voluntario')),
-                    ),
-                  ),
-                  const SizedBox(width: 15),
-                  _buildQuickAccessCard(
-                    context,
-                    Icons.campaign,
-                    'Emergencias',
-                    () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const TestScreen(title: 'Emergencias')),
-                    ),
-                  ),
-                  const SizedBox(width: 15),
-                  _buildQuickAccessCard(
-                    context,
-                    Icons.school,
-                    'Capacitación',
-                    () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const TestScreen(title: 'Capacitación')),
-                    ),
-                  ),
+                      Icons.volunteer_activism,
+                      'Ser Voluntario',
+                      () => {
+                            //   Navigator.push( TODO
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) =>
+                            //           const TestScreen(title: 'Ser Voluntario')),
+                            // ),
+                          }),
                 ],
               ),
             ),
@@ -529,115 +464,126 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             _buildDrawerItem(
               context,
+              Icons.info,
+              'Mis Situaciones',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const MisSituacionesPage()),
+              ),
+            ),
+            _buildDrawerItem(
+              context,
+              Icons.report,
+              'Reportar Situación',
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ReportarSituacionPage()),
+              ),
+            ),
+            Divider(thickness: 1),
+            _buildDrawerItem(
+              context,
               Icons.home,
               'Inicio',
               () => Navigator.pop(context),
             ),
             _buildDrawerItem(
               context,
+              Icons.local_police,
+              'Servicios',
+              () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DefenseServices()),
+                );
+              },
+            ),
+            _buildDrawerItem(
+              context,
+              Icons.newspaper,
+              'Noticias',
+              () {
+                Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NewsList(),
+                    ));
+              },
+            ),
+            _buildDrawerItem(
+              context,
+              Icons.video_library,
+              'Videos',
+              () {
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const VideoList()));
+              },
+            ),
+            _buildDrawerItem(
+              context,
+              Icons.hotel,
+              'Albergues',
+              () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HostelList()),
+                );
+              },
+            ),
+            _buildDrawerItem(
+              context,
+              Icons.map,
+              'Mapa',
+              () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MapaAlberguesPage()),
+                );
+              },
+            ),
+            _buildDrawerItem(
+              context,
+              Icons.shield,
+              'Medidas Preventivas',
+              () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MedidasPreventivasPage()),
+                );
+              },
+            ),
+            _buildDrawerItem(
+              context,
+              Icons.people,
+              'Miembros',
+              () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Members()),
+                );
+              },
+            ),
+            _buildDrawerItem(
+              context,
               Icons.info,
-              'Acerca de Nosotros',
+              'Acerca de',
               () {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const TestScreen(title: 'Acerca de Nosotros')),
+                  MaterialPageRoute(builder: (context) => const AboutDevs()),
                 );
-              },
-            ),
-            _buildDrawerItem(
-              context,
-              Icons.volunteer_activism,
-              'Voluntariado',
-              () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const TestScreen(title: 'Voluntariado')),
-                );
-              },
-            ),
-            _buildDrawerItem(
-              context,
-              Icons.campaign,
-              'Emergencias',
-              () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const TestScreen(title: 'Emergencias')),
-                );
-              },
-            ),
-            _buildDrawerItem(
-              context,
-              Icons.event,
-              'Eventos',
-              () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const TestScreen(title: 'Eventos')),
-                );
-              },
-            ),
-            _buildDrawerItem(
-              context,
-              Icons.school,
-              'Capacitaciones',
-              () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const TestScreen(title: 'Capacitaciones')),
-                );
-              },
-            ),
-            const Divider(thickness: 1),
-            _buildDrawerItem(
-              context,
-              Icons.phone,
-              'Contacto',
-              () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const TestScreen(title: 'Contacto')),
-                );
-              },
-            ),
-            _buildDrawerItem(
-              context,
-              Icons.account_circle,
-              'Mi Perfil',
-              () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const TestScreen(title: 'Mi Perfil')),
-                );
-              },
-            ),
-            _buildDrawerItem(
-              context,
-              Icons.logout,
-              'Cerrar Sesión',
-              () {
-                Navigator.pop(context);
-                // Implementar cierre de sesión
               },
             ),
           ],
@@ -659,81 +605,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       onTap: onTap,
       dense: true,
-    );
-  }
-}
-
-// Pantalla de prueba para la navegación
-class TestScreen extends StatelessWidget {
-  final String title;
-
-  const TestScreen({
-    required this.title,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.orange.shade600,
-        elevation: 0,
-        title: Text(
-          title,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.construction,
-              size: 80,
-              color: Colors.orange.shade300,
-            ),
-            const SizedBox(height: 20),
-            Text(
-              '¡Página de $title!',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.orange.shade800,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Esta es una página de prueba para demostrar la navegación',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey.shade600,
-              ),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).pop(),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange.shade600,
-                foregroundColor: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: const Text('Volver'),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

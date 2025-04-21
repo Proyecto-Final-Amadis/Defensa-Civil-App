@@ -180,7 +180,7 @@ class AboutDevs extends StatelessWidget {
                   children: [
                     //TODO: Añadir una imagen de Jeriel a los assets y añadirla a la pantalla
                     Image.network(
-                      'https://picsum.photos/400/250',
+                      'https://media.licdn.com/dms/image/v2/D4E03AQG6x3QJ-tZ8jw/profile-displayphoto-shrink_800_800/B4EZVh8NajGgAg-/0/1741104928744?e=1750896000&v=beta&t=x19V8XijT6xNG4AdI5spwrKUMprJZsRGl0ilNhSmH3k',
                       width: double.infinity,
                       height: 250,
                       fit: BoxFit.cover,
