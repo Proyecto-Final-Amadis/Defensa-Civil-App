@@ -3,10 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:proyecto_final/models/albergue.dart';
 import 'package:proyecto_final/models/medidads.dart';
 import 'package:proyecto_final/models/situacion.dart';
+import 'package:proyecto_final/models/volunteer.dart';
 import 'package:proyecto_final/services/someservices.dart';
 
 // Provider para los albergues
-final alberguesProvider = FutureProvider<AlberguesResponse>((ref) async {
+final alberguesProvider =
+    AutoDisposeFutureProvider<AlberguesResponse>((ref) async {
   return await ApiService().getAlbergues();
 });
 
@@ -22,16 +24,16 @@ final albergueDetalleProvider =
   final alberguesAsyncValue = ref.watch(alberguesProvider);
 
   return alberguesAsyncValue.when(
-    data: (data) => data.datos.firstWhere((albergue) => albergue.id == id,
+    data: (data) => data.datos.firstWhere((albergue) => albergue.codigo == id,
         orElse: () => AlbergueModel(
-            id: '',
-            nombre: '',
-            direccion: '',
-            telefono: '',
-            capacidad: '',
-            latitud: '',
-            longitud: '',
-            provincia: '')),
+            ciudad: "",
+            codigo: "",
+            edificio: "",
+            coordinador: "",
+            telefono: "",
+            capacidad: "",
+            lat: "",
+            lng: "")),
     loading: () => null,
     error: (_, __) => null,
   );
@@ -51,11 +53,11 @@ final medidaPreventivaDetalleProvider =
   );
 });
 
-final misSituacionesProvider = FutureProvider<SituacionesResponse>((ref) async {
+final misSituacionesProvider =
+    AutoDisposeFutureProvider<SituacionesResponse>((ref) async {
   return await ApiService().getMisSituaciones();
 });
 
-// Provider para reportar una nueva situación
 final reportarSituacionProvider =
     FutureProvider.family<GeneralResponse, SituacionModel>(
         (ref, situacion) async {
@@ -80,4 +82,11 @@ final situacionSeleccionadaProvider =
     loading: () => null,
     error: (_, __) => null,
   );
+});
+
+// Provider para registro de voluntarios
+final registrarVoluntarioProvider =
+    FutureProvider.family<GeneralResponse, VoluntarioModel>(
+        (ref, voluntario) async {
+  return await ApiService().registrarVoluntario(voluntario);
 });

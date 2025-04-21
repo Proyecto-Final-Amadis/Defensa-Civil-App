@@ -6,6 +6,7 @@ import 'package:proyecto_final/config/preferences.dart';
 import 'package:proyecto_final/models/albergue.dart';
 import 'package:proyecto_final/models/medidads.dart';
 import 'package:proyecto_final/models/situacion.dart';
+import 'package:proyecto_final/models/volunteer.dart';
 
 class ApiService extends ClientBase {
   // Albergues
@@ -45,7 +46,7 @@ class ApiService extends ClientBase {
       };
 
       final response = await clientDio.post(
-        '/reportar_situacion.php',
+        '/nueva_situacion.php',
         data: FormData.fromMap(data),
       );
 
@@ -62,10 +63,13 @@ class ApiService extends ClientBase {
   Future<SituacionesResponse> getMisSituaciones() async {
     try {
       final token = await AppPreferences.getStringPreference('token');
+      final formData = FormData.fromMap({
+        'token': token,
+      });
 
-      final response = await clientDio.get(
-        '/mis_situaciones.php',
-        queryParameters: {'token': token},
+      final response = await clientDio.post(
+        '/situaciones.php',
+        data: formData,
       );
 
       final SituacionesResponse data =
@@ -73,6 +77,27 @@ class ApiService extends ClientBase {
       return data;
     } catch (e) {
       debugPrint('Error al obtener mis situaciones: $e');
+      rethrow;
+    }
+  }
+
+  Future<GeneralResponse> registrarVoluntario(
+      VoluntarioModel voluntario) async {
+    try {
+      final Map<String, dynamic> data = {
+        ...voluntario.toJson(),
+      };
+
+      final response = await clientDio.post(
+        '/registrar_voluntario.php',
+        data: FormData.fromMap(data),
+      );
+
+      final GeneralResponse respuestaData =
+          GeneralResponse.fromJson(response.data);
+      return respuestaData;
+    } catch (e) {
+      debugPrint('Error al registrar voluntario: $e');
       rethrow;
     }
   }

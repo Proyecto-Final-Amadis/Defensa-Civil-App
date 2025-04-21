@@ -14,7 +14,7 @@ class AlbergueDetallePage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(albergue?.nombre ?? 'Detalle de Albergue'),
+        title: Text(albergue?.codigo ?? 'Detalle de Albergue'),
         backgroundColor: Colors.orange.shade800,
       ),
       body: albergue == null
@@ -25,7 +25,7 @@ class AlbergueDetallePage extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    albergue.nombre,
+                    albergue.codigo,
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -43,7 +43,7 @@ class AlbergueDetallePage extends ConsumerWidget {
                             leading: Icon(Icons.location_on,
                                 color: Colors.orange.shade800),
                             title: const Text('Dirección'),
-                            subtitle: Text(albergue.direccion),
+                            subtitle: Text(albergue.edificio),
                           ),
                           ListTile(
                             leading: Icon(Icons.phone,
@@ -61,7 +61,7 @@ class AlbergueDetallePage extends ConsumerWidget {
                             leading: Icon(Icons.location_city,
                                 color: Colors.orange.shade800),
                             title: const Text('Provincia'),
-                            subtitle: Text(albergue.provincia),
+                            subtitle: Text(albergue.ciudad),
                           ),
                         ],
                       ),

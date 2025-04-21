@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:proyecto_final/modules/auth/pages/login.dart';
+import 'package:proyecto_final/modules/home/pages/home.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
                 ColorScheme.fromSeed(seedColor: Colors.deepOrangeAccent),
             useMaterial3: true,
           ),
-          home: LoginScreen(),
+          home: HomeScreen(),
         );
       },
     );

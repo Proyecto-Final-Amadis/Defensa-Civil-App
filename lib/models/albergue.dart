@@ -1,50 +1,57 @@
 // albergue_model.dart
+// To parse this JSON data, do
+//
+//     final albergue = albergueFromJson(jsonString);
+
+import 'dart:convert';
+
+AlbergueModel albergueFromJson(String str) =>
+    AlbergueModel.fromJson(json.decode(str));
+
+String albergueToJson(AlbergueModel data) => json.encode(data.toJson());
+
 class AlbergueModel {
-  final String id;
-  final String nombre;
-  final String direccion;
-  final String telefono;
-  final String capacidad;
-  final String latitud;
-  final String longitud;
-  final String provincia;
+  String ciudad;
+  String codigo;
+  String edificio;
+  String coordinador;
+  String telefono;
+  String capacidad;
+  String lat;
+  String lng;
 
   AlbergueModel({
-    required this.id,
-    required this.nombre,
-    required this.direccion,
+    required this.ciudad,
+    required this.codigo,
+    required this.edificio,
+    required this.coordinador,
     required this.telefono,
     required this.capacidad,
-    required this.latitud,
-    required this.longitud,
-    required this.provincia,
+    required this.lat,
+    required this.lng,
   });
 
-  factory AlbergueModel.fromJson(Map<String, dynamic> json) {
-    return AlbergueModel(
-      id: json['id'] ?? '',
-      nombre: json['nombre'] ?? '',
-      direccion: json['direccion'] ?? '',
-      telefono: json['telefono'] ?? '',
-      capacidad: json['capacidad'] ?? '',
-      latitud: json['latitud'] ?? '',
-      longitud: json['longitud'] ?? '',
-      provincia: json['provincia'] ?? '',
-    );
-  }
+  factory AlbergueModel.fromJson(Map<String, dynamic> json) => AlbergueModel(
+        ciudad: json["ciudad"],
+        codigo: json["codigo"],
+        edificio: json["edificio"],
+        coordinador: json["coordinador"],
+        telefono: json["telefono"],
+        capacidad: json["capacidad"],
+        lat: json["lat"],
+        lng: json["lng"],
+      );
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'nombre': nombre,
-      'direccion': direccion,
-      'telefono': telefono,
-      'capacidad': capacidad,
-      'latitud': latitud,
-      'longitud': longitud,
-      'provincia': provincia,
-    };
-  }
+  Map<String, dynamic> toJson() => {
+        "ciudad": ciudad,
+        "codigo": codigo,
+        "edificio": edificio,
+        "coordinador": coordinador,
+        "telefono": telefono,
+        "capacidad": capacidad,
+        "lat": lat,
+        "lng": lng,
+      };
 }
 
 class AlberguesResponse {

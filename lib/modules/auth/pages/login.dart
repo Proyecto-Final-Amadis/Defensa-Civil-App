@@ -51,7 +51,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error al iniciar sesión: ${e.toString()}'),
+          content: Text('Error al iniciar sesión'),
           backgroundColor: Colors.red,
         ),
       );
@@ -61,6 +61,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -69,7 +72,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 40),
+                const SizedBox(height: 0),
                 // Logo o ícono
                 Center(
                   child: Container(

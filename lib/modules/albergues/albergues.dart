@@ -43,8 +43,8 @@ class MapaAlberguesPage extends ConsumerWidget {
                           width: 40.0,
                           height: 40.0,
                           point: LatLng(
-                            double.tryParse(albergue.latitud) ?? 0.0,
-                            double.tryParse(albergue.longitud) ?? 0.0,
+                            double.tryParse(albergue.lng) ?? 0.0,
+                            double.tryParse(albergue.lat) ?? 0.0,
                           ),
                           child: GestureDetector(
                             onTap: () {
@@ -52,7 +52,7 @@ class MapaAlberguesPage extends ConsumerWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      AlbergueDetallePage(id: albergue.id),
+                                      AlbergueDetallePage(id: albergue.codigo),
                                 ),
                               );
                             },
