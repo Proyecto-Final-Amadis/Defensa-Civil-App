@@ -55,10 +55,37 @@ class VideoList extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final video = VideoModel.fromJson(videos[index]);
                   return Card(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: BorderSide(
+                        color: Colors.orange.shade400,
+                        width: 2,
+                      ),
+                    ),
+                    margin: const EdgeInsets.only(
+                      bottom: 10,
+                    ),
                     child: ListTile(
-                      title: Text(video.title),
-                      subtitle: Text(video.date),
-                      trailing: const Icon(Icons.arrow_forward_ios),
+                      tileColor: Colors.grey.shade50,
+                      title: Text(
+                        video.title,
+                        style: TextStyle(
+                          color: Colors.orange.shade800,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text(
+                        video.date,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.orange.shade600,
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.orange.shade800,
+                      ),
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(

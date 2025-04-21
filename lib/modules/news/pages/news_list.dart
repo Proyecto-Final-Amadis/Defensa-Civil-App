@@ -70,8 +70,8 @@ class NewsList extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                       side: BorderSide(
-                        color: Colors.orange.shade200,
-                        width: 3,
+                        color: Colors.orange.shade400,
+                        width: 2,
                       ),
                     ),
                     child: ListTile(
